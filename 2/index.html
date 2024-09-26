@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 2</h1>
+    <h4>This project covers different ways of combining images and understanding different techniques including blurring and sharpening.</h3>
+    <h2>Part 1</h2>
+    <h3>1.1 - Finite Difference Operator</h3>
+    <p>We are given the following image of a cameraman.</p><img src="./media/cameraman.png">
+    <p>We convolve the image to obtain iamges corresponding to the partial derivates of each difference kernel dx = [[1, -1]] and dy = [[1], [-1]] and then found the combined gradient as in the spec, which we then binarized with threshold = np.mean(gradient_magnitude) + 1.5 * np.std(gradient_magnitude). </p>
+    <img src = "./media/gxgy.png">
+    <img src = "./media/gm+gmbin.png">
+    <h3>1.2</h3>
+    <p>In this part we blur the images using a gaussian filter to ensure smoothness, using kernel_size = 12 and sigma = 2.</p>
+    <p>This first image is the original image blurred.</p>
+    <img src = "./media/blurred_gf.png">
+    <p>We then have the blurred partial derivates with respect to the finite difference kernels.</p>
+    <img src = "./media/blurred_px.png">
+    <img src = "./media/blurred_py.png">
+    <p>We can do this on the combined gradient magnitude as well.</p>
+    <img src = "./media/blurgmag.png">
+    <p>And finally on the binarized version.</p>
+    <img src = "./media/blurbingmag.png">
+    <h2>Part 2</h2>
+    <h3>2.1</h3>
+    <p>In this part of the project we consider the sharpening of images using the unsharp masking technique, in which we simply subtract a low-frequency version of the image, obtained using a Gaussian filter, from the orignal image to obtain a high-frequency image. The following results were obtained using alpha=0.75.</p>
+    <img src = "./media/tajandsharp.png">
+    <p>For this next image I blurred the original image, and then resharpened to test the effectiveness of the sharpening. We see that while much of the sharpness of the beak has been recovered, the sharpness of the color boundary between white and black on the bird remains a little hazy.</p>
+    <img src = "./media/birdandsharp.png">
+    <h3>2.2</h3>
+    <p>Now we are combining images to obtain hybrid images where a lower-frequency image is overlaid onto a high-frequency image which have both been created using convolving with Gaussian filters as before. To do this, we first align the images and then isolate the high frequencies of one image and the low frequencies of another which are then combined to create the hybrid image where at different distances certain parts of the image will become more clear.</p>
+    <p>For the given example of a person and a cat, we have the following combination.</p>
+    <img src = "./media/hybrid_cat_man.png">
+    <p>Here is an example with Jeff Bezos and a sheep. From afar only the sheep is visible but closer to the screen we see Bezos is still present.</p>
+    <img src = "./media/bezossheep.png">
+    <p>Frequencies</p>
+    <img src = "./media/fft_freqs.png">
+    <img src = "./media/fft_bezossheep.png">
+    <h3>2.3</h3>    
+    <p>Laplacians for apple</p>
+    <img src = "./media/lapsapl.png">
+    <p>Laplacians for orange</p>
+    <img src = "./media/lapsorange.png">
+    
+</body>
+</html>
