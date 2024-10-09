@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 3</h1>
+    <h4>This project covers the morphing of faces, as explained through each section.</h3>
+    <h2>Part 1 - Defining Correspondences</h2>
+    <p>First, if we wanted to morph two images to achieve some halfway result, we must first defining corresponding points between both images. I did this first using the given labeling tool by course staff, and then computing a Delaunay triangulation using scipy between the corresponding points. A resulting triangulation from two images of my friends is overlaid onto the original images below.</p>
+    <img src = "./media/q1manav.png">
+    <img src = "./media/q1nathan.png">
+    <p>Since the pictures I took of them were originally different sizes, but the same aspect ratio, I simply shrunk the larger picture with skimage.transform.resize.</p>
+    <h2>Part 2 - Computing the "Mid-way Face" </h2>
+    <p> In this part, we computed an actual midway face between the two earlier images. The midway face is shown below. I computed this using the triangulation from the previous step as well as with a Nearest Neighbor approach as opposed to something like griddata for efficiency, as while the NN approach lost some smoothness around the head area, it ran orders of magnitude faster. In my approach, I defined a computeAffine function essentially computing an affine transformation between the two previously calculated Delaunay triangulations. </p>
+    <img src = "./media/q2.png">
+    <h2>Part 3 - The Morph Sequence</h2>
+    <p>In this section, we show the transition from one face to another with further intermediate morphs as opposed to a singular midway face. The midway face is produced by this morph sequence at warp_factor = 0.5, and by iterating over increasing warp factors from 0 to 1, we can create a progression of intermediary morphs which was then compiled into a gif as below.</p>
+    <img src = "./media/manav-nathan.gif">
+    <h2>Part 4 - The "Mean face" of a population</h2> 
+    <p>In this section I used the Danes dataset to observe traits of an "average" face amongst a population. This was essentially done by computing the mean of all faces, similar to part 2, but this time over the entire dataset and not just 2 images. The mean face of all Danes is shown below. </p>
+    <img src = "./media/q4mean.png">
+    <p>Subsequently, some example images from the dataset were then warped back onto the average face. 4 are shown below.</p>
+    <img src = "./media/q4e1.png">
+    <img src = "./media/q4e2.png">
+    <img src = "./media/q4e3.png">
+    <img src = "./media/q4e4.png">
+    <p>Finally, I warped one of my friend's faces onto the average dane and vice versa.</p>
+    <img src = "./media/q4md.png">
+    <h2>Part 5 - Caricatures</h2>
+    <p>The final part consisted of adjusting some parameter alpha of the combined points to emphasize or de-emphasize certain features, effectively creating caricatures of the original image. In the below image, I used my friend's image morphed onto the average Dane face, and with a high alpha value we see traits like a longer neck and smaller forehead, and with lower alpha we have eyes pointing downwards and more of a smile</p>
+    <img src = "./media/q5.png">
+</body>
+</html>
